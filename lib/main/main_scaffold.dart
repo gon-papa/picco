@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:picco/gen/assets.gen.dart';
+import 'package:picco/main.dart';
 import 'package:picco/main/mypage/page.dart';
 import 'package:picco/main/timeline/page.dart';
+import 'package:picco/thema.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});
@@ -20,7 +22,7 @@ class MainScreen extends ConsumerWidget {
   }
 }
 
-class MainScaffold extends StatelessWidget {
+class MainScaffold extends ConsumerWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
   final Widget body;
@@ -40,30 +42,40 @@ class MainScaffold extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).colorScheme;
+    final mode = ref.watch(modeProvider);
     return Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Assets.logo.logo.svg(width: 32, height: 32),
-            Text(
-              'Picco',
-              style: TextStyle(
-                color: theme.primary,
-                fontWeight: FontWeight.bold,
-                fontSize: 28,
+            ShaderMask(
+              shaderCallback:
+                  (bounds) => AppGradients.getGradient(mode).createShader(
+                    Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                  ),
+              blendMode: BlendMode.srcIn,
+              child: Text(
+                'Picco',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
               ),
             ),
           ],
         ),
       ),
       body: body,
-      bottomNavigationBar: BottomNavigationBar(
-        items: _items,
-        currentIndex: currentIndex,
-        onTap: onTap,
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Divider(color: Colors.black.withValues(alpha: 0.1), height: 1),
+          BottomNavigationBar(
+            items: _items,
+            currentIndex: currentIndex,
+            onTap: onTap,
+          ),
+        ],
       ),
     );
   }

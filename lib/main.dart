@@ -13,10 +13,17 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(goRouteProvider);
+    final mode = ref.watch(modeProvider);
     return MaterialApp.router(
       title: 'Flutter Demo',
-      theme: AppTheme.light,
+      theme: mode == AppMode.female ? AppTheme.female : AppTheme.male,
+      darkTheme: AppTheme.dark,
+      themeMode: mode == AppMode.dark ? ThemeMode.dark : ThemeMode.light,
       routerConfig: router,
     );
   }
 }
+
+final modeProvider = StateProvider<AppMode>((ref) => AppMode.male);
+
+enum AppMode { male, female, dark }
