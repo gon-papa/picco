@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:picco/routes/route.dart';
-import 'package:picco/thema.dart';
+import 'package:picco/theme.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -23,7 +23,3 @@ class MyApp extends ConsumerWidget {
     );
   }
 }
-
-final modeProvider = StateProvider<AppMode>((ref) => AppMode.male);
-
-enum AppMode { male, female, dark }

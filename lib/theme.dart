@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:picco/main.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AppColors {
   // 男性向け
@@ -170,3 +170,7 @@ class AppGradients {
     }
   }
 }
+
+final modeProvider = StateProvider<AppMode>((ref) => AppMode.male);
+
+enum AppMode { male, female, dark }

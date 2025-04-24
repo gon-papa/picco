@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:picco/gen/assets.gen.dart';
-import 'package:picco/main.dart';
 import 'package:picco/main/mypage/page.dart';
 import 'package:picco/main/timeline/page.dart';
-import 'package:picco/thema.dart';
+import 'package:picco/theme.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({super.key});

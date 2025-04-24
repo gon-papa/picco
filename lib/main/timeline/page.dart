@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:picco/main.dart';
-import 'package:picco/thema.dart';
+import 'package:picco/theme.dart';
 
 class TimelinePage extends ConsumerWidget {
   const TimelinePage({super.key});
